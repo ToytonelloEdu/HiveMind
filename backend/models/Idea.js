@@ -1,21 +1,25 @@
 import { DataTypes } from "sequelize";
 
-export function createModel(database){
-  database.define('Todo', {
+export function createIdeaModel(database){
+  database.define('Idea', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    todo: {
+    title: {
       type: DataTypes.TEXT
     },
-    done: {
+    description: {
+      type: DataTypes.TEXT
+    },
+    isMarkDown: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       allowNull: false
     }
-    //by default, Sequelize adds the createdAt and updatedAt fields to all models
+    //createdAt and updatedAt
+
   }, {
 
   })

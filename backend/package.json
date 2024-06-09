@@ -1,15 +1,15 @@
 {
-  "name": "express-todo-list",
+  "name": "express-rest-hivemind",
   "version": "1.0.0",
-  "description": "Implementation of To-do list in Node.js using Express.",
+  "description": "Implementation of HiveMind API in Node.js using Express.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Luigi Libero Lucio Starace",
-  "license": "MIT",
+  "author": "Antonio Ascione",
+  "license": "",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
