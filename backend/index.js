@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { ideaRouter } from "./routes/ideaRouter.js";
+import { authenticationRouter } from "./routes/authRouter.js";
+import { homeRouter } from "./routes/homeRouter.js";
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(ideaRouter);
+app.use(authenticationRouter);
+app.use(homeRouter);
 
 app.use( (err, req, res, next) => {
   console.log(err.stack);
