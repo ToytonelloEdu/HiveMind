@@ -1,12 +1,9 @@
 import { Idea } from "../models/Database.js";
 
 export class IdeaController {
-  
-    static async getAllIdeas(){
-      return Idea.findAll();
-    }
     
-    static async saveIdea(req){
+    static async saveIdea(req) {
+      console.log(req.body);
       let idea = new Idea({
         title: req.body.title,
         description: req.body.description,
@@ -15,21 +12,29 @@ export class IdeaController {
       return idea.save();
     }
   
-    static async findById(req){
+    static async findById(req) {
       return Idea.findByPk(req.params.id);
     }
   
-    static async update(req){
-      let idea = await this.findById(req);
-      idea.setDataValue('todo', req.body.todo);
-      return idea.save();
-    }
-  
-    static async delete(req){
+    static async delete(req) {
       return new Promise( (resolve, reject) => {
         this.findById(req).then( item => {
           item.destroy().then( () => {resolve(item)})
         })
       })
+    }
+
+    static async addUpvote(req) {
+      let idea = await this.findById(req);
+      let currUpvotes = idea.getDataValue('upvotes');
+      idea.setDataValue('upvotes', currUpvotes+1);
+      return idea.save();
+    }
+
+    static async downUpvote(req) {
+      let idea = await this.findById(req);
+      let currDownvotes = idea.getDataValue('downvotes');
+      idea.setDataValue('downvotes', currDownvotes+1);
+      return idea.save();
     }
   }

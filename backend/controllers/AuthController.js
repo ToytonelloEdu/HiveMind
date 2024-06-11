@@ -4,7 +4,7 @@ import Jwt from "jsonwebtoken";
 export class AuthController {
 
   static async checkCredentials(req, res) {
-    let user = new User({ //user data specified in the request
+    let user = new User({
       username: req.body.user, 
       password: req.body.passw
     });
@@ -14,9 +14,9 @@ export class AuthController {
         username: user.username,
         password: user.password
       }
-    })
+    });
 
-    return (select === null)
+    return (select !== null)
   }
       
     
