@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-export function createIdeaModel(database){
+export function createModel(database){
   database.define('Idea', {
     id: {
       type: DataTypes.INTEGER,
@@ -8,10 +8,21 @@ export function createIdeaModel(database){
       primaryKey: true
     },
     title: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     description: {
       type: DataTypes.TEXT
+    },
+    upvotes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
+    downvotes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
     },
     isMarkDown: {
       type: DataTypes.BOOLEAN,

@@ -1,9 +1,10 @@
 import { DataTypes } from "sequelize";
+import { createHash } from "crypto";
 
-export function createUserModel(database){
+export function createModel(database){
   database.define('User', {
     username: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true
     },
