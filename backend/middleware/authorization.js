@@ -2,7 +2,7 @@ import { AuthController } from "../controllers/AuthController.js";
 
 export function enforceAuth(req, res, next) {
     const authHeader = req.headers['authorization'];
-    const token = authHeader?.split(' ')[1];
+    const token = authHeader?.split(' ')[0];
     if(!token) {
         next({status: 401, message: "Unauthorized"});
         return;
