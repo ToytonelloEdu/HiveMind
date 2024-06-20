@@ -8,6 +8,7 @@ export class IdeaController {
         title: req.body.title,
         description: req.body.description,
         isMarkDown: req.body.isMarkDown,
+        UserUsername: req.body.username
       });
       return idea.save();
     }

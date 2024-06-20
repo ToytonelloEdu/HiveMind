@@ -19,6 +19,7 @@ export class HomeController {
                 'isMarkdown',
                 'upvotes',
                 'downvotes',
+                'UserUsername',
                 [Sequelize.literal('ABS(upvotes - downvotes)'), 'votesDiff'],
                 [Sequelize.literal('(upvotes+downvotes)'), 'votesSum']
             ],
@@ -47,6 +48,7 @@ export class HomeController {
                 'isMarkdown',
                 'upvotes',
                 'downvotes',
+                'UserUsername',
                 [Sequelize.literal('ABS(upvotes/downvotes)', 'votesRatio')]
             ],
             order: [
@@ -73,6 +75,7 @@ export class HomeController {
                 'isMarkdown',
                 'upvotes',
                 'downvotes',
+                'UserUsername',
                 [Sequelize.literal('ABS(upvotes/downvotes)', 'votesRatio')]
             ],
             order: [
