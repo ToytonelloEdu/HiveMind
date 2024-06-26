@@ -49,7 +49,7 @@ export class HomeController {
                 'upvotes',
                 'downvotes',
                 'UserUsername',
-                [Sequelize.literal('ABS(upvotes/downvotes)', 'votesRatio')]
+                [Sequelize.literal('ABS(upvotes/downvotes)'), 'votesRatio']
             ],
             order: [
                 [Sequelize.literal('votesRatio'), 'DESC']
@@ -76,7 +76,7 @@ export class HomeController {
                 'upvotes',
                 'downvotes',
                 'UserUsername',
-                [Sequelize.literal('ABS(upvotes/downvotes)', 'votesRatio')]
+                [Sequelize.literal('ABS(upvotes/downvotes)'), 'votesRatio']
             ],
             order: [
                 [Sequelize.literal('votesRatio'), 'ASC']
