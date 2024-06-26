@@ -44,3 +44,19 @@ ideaRouter.post("/ideas/:id/downvote", enforceAuth, (req, res, next) => {
         next(err);
     })
 });
+
+ideaRouter.delete("/ideas/:id/upvote", enforceAuth, (req, res, next) => {
+    IdeaController.Upvote(req).then( (item) => {
+        res.json(item);
+    }).catch( err => {
+        next(err);
+    })
+});
+
+ideaRouter.delete("/ideas/:id/downvote", enforceAuth, (req, res, next) => {
+    IdeaController.removeDownvote(req).then( (item) => {
+        res.json(item);
+    }).catch( err => {
+        next(err);
+    })
+});

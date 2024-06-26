@@ -32,10 +32,24 @@ export class IdeaController {
       return idea.save();
     }
 
-    static async downUpvote(req) {
+    static async addDownvote(req) {
       let idea = await this.findById(req);
       let currDownvotes = idea.getDataValue('downvotes');
       idea.setDataValue('downvotes', currDownvotes+1);
+      return idea.save();
+    }
+
+    static async removeUpvote(req) {
+      let idea = await this.findById(req);
+      let currUpvotes = idea.getDataValue('upvotes');
+      idea.setDataValue('upvotes', currUpvotes-1);
+      return idea.save();
+    }
+
+    static async removeDownvote(req) {
+      let idea = await this.findById(req);
+      let currDownvotes = idea.getDataValue('downvotes');
+      idea.setDataValue('downvotes', currDownvotes1);
       return idea.save();
     }
   }
