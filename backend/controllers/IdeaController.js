@@ -8,7 +8,7 @@ export class IdeaController {
         title: req.body.title,
         description: req.body.description,
         isMarkDown: req.body.isMarkDown,
-        UserUsername: req.body.username
+        UserUsername: req.body.UserUsername
       });
       return idea.save();
     }
@@ -25,31 +25,10 @@ export class IdeaController {
       })
     }
 
-    static async addUpvote(req) {
-      let idea = await this.findById(req);
-      let currUpvotes = idea.getDataValue('upvotes');
-      idea.setDataValue('upvotes', currUpvotes+1);
-      return idea.save();
-    }
-
-    static async addDownvote(req) {
-      let idea = await this.findById(req);
-      let currDownvotes = idea.getDataValue('downvotes');
-      idea.setDataValue('downvotes', currDownvotes+1);
-      return idea.save();
-    }
-
-    static async removeUpvote(req) {
-      let idea = await this.findById(req);
-      let currUpvotes = idea.getDataValue('upvotes');
-      idea.setDataValue('upvotes', currUpvotes-1);
-      return idea.save();
-    }
-
-    static async removeDownvote(req) {
-      let idea = await this.findById(req);
-      let currDownvotes = idea.getDataValue('downvotes');
-      idea.setDataValue('downvotes', currDownvotes1);
+    static async updateVotes(id, updated) {
+      let idea = await Idea.findByPk(id);
+      idea.setDataValue('upvotes', updated.upvotes);
+      idea.setDataValue('downvotes',updated.downvotes);
       return idea.save();
     }
   }

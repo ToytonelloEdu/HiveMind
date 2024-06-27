@@ -29,34 +29,13 @@ ideaRouter.delete("/ideas/:id", ensureUserModifiesOwnIdeas, (req, res, next) => 
     })
 });
 
-ideaRouter.post("/ideas/:id/upvote", enforceAuth, (req, res, next) => {
-    IdeaController.addUpvote(req).then( (item) => {
+ideaRouter.put("/ideas/:id/votes", enforceAuth, (req, res, next) => {
+    IdeaController.updateVotes(req.params.id, req.body).then( (item) => {
+     if(item)
         res.json(item);
+     else 
+        next({status: 404, message: "Todo not found"});
     }).catch( err => {
         next(err);
-    })
-});
-
-ideaRouter.post("/ideas/:id/downvote", enforceAuth, (req, res, next) => {
-    IdeaController.addDownvote(req).then( (item) => {
-        res.json(item);
-    }).catch( err => {
-        next(err);
-    })
-});
-
-ideaRouter.delete("/ideas/:id/upvote", enforceAuth, (req, res, next) => {
-    IdeaController.Upvote(req).then( (item) => {
-        res.json(item);
-    }).catch( err => {
-        next(err);
-    })
-});
-
-ideaRouter.delete("/ideas/:id/downvote", enforceAuth, (req, res, next) => {
-    IdeaController.removeDownvote(req).then( (item) => {
-        res.json(item);
-    }).catch( err => {
-        next(err);
-    })
+    });
 });
