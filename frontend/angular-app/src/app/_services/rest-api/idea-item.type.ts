@@ -4,7 +4,7 @@ export interface IdeaItem {
     description: string;
     upvotes: number;
     downvotes: number;
-    isMarkDown?: boolean;
+    isMarkDown: boolean;
     UserUsername?: string; 
     createdAt?: Date; 
     updatedAt?: Date;
