@@ -6,3 +6,85 @@
 //npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 
 @import 'ngx-toastr/toastr';
+
+a.link {
+    @apply underline text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 visited:text-yellow-800 dark:visited:text-amber-400
+}
+
+.form-error{
+    @apply text-red-600 dark:text-red-400 text-sm pt-2;
+}
+
+.idea-card{
+    display: inline-block;
+    width: 500;
+    min-height: 200;
+}
+
+.markdown {
+    h1 { 
+        display: block;
+        font-size: 1.75em;
+        margin-top: 0.67em;
+        margin-bottom: 0.67em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    h2 {
+        display: block;
+        font-size: 1.5em;
+        margin-top: 0.83em;
+        margin-bottom: 0.83em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    h3 { 
+        display: block;
+        font-size: 1.17em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    h4 { 
+        display: block;
+        margin-top: 1.33em;
+        margin-bottom: 1.33em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    h5 { 
+        display: block;
+        font-size: .83em;
+        margin-top: 1.67em;
+        margin-bottom: 1.67em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    h6 { 
+        display: block;
+        font-size: .67em;
+        margin-top: 2.33em;
+        margin-bottom: 2.33em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    ul { 
+        list-style-type: disc; 
+        list-style-position: inside; 
+     }
+     ol { 
+        list-style-type: decimal; 
+        list-style-position: inside; 
+     }
+     ul ul, ol ul { 
+        list-style-type: circle; 
+        list-style-position: inside; 
+        margin-left: 15px; 
+     }
+     ol ol, ul ol { 
+        list-style-type: lower-latin; 
+        list-style-position: inside; 
+        margin-left: 15px; 
+     }
+}
