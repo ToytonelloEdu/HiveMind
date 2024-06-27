@@ -1,0 +1,46 @@
+<li class="m-1 flex items-center flex-wrap content-between px-4 py-2">
+    <div class="bg-white shadow border border-yellow-200 p-4 space-y-3 w-auto rounded-lg ml-auto">
+        <div class="flex flex-row">
+            <div class="text-lg font-bold flex items-start justify-start w-full">
+                <button [routerLink]="ideaLink" type="button" class="drop-shadow-sm">
+                    {{this.ideaItem.title}}
+                </button>
+            </div>
+            <div class="text-md font-normal text-gray-700 flex items-end justify-end min-w-fit">
+                @if(ideaItem.UserUsername !== null) {
+                    {{this.ideaItem.UserUsername}}
+                } @else {
+                    central_mind
+                }
+            </div>
+        </div>
+        @if(! this.ideaItem.isMarkDown){
+            <div>
+                <textarea readonly class="border border-yellow-50 py-1 px-2  bg-gray-50 rounded-sm min-w-96 min-h-20 resize-none">{{this.ideaItem.description}}</textarea>
+            </div> 
+        } @else {
+            <div>
+                <div class="border border-yellow-50 py-1 px-2  bg-gray-50 rounded-sm min-w-96 min-h-20 markdown" [innerHTML]="markdown"></div>
+            </div> 
+        }
+        <div class="flex flex-row">
+            <div class="flex flex-row space-x-6 items-start justify-start w-full">
+                @if (this.voteState === VoteStateT.none) {
+                    <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                    <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>
+                } @else if (this.voteState === VoteStateT.upvote) {
+                    <button class="bg-yellow-800 text-white rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                    <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>
+                } @else if (this.voteState === VoteStateT.downvote) {
+                    <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                    <button class="bg-yellow-800 text-white rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>                    
+                }
+                
+            </div>
+            <div class="items-end">
+                <button [routerLink]="ideaLink" type="button" class="drop-shadow-md">Comments</button>
+            </div>
+        </div>
+        
+    </div>
+</li>
