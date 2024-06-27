@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../_services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +13,12 @@ export class NavbarComponent {
   isOpen = false;
   isDropdownOpen = false;
 
+  authService = inject(AuthService);
+
   toggle() {
     this.isOpen = !this.isOpen;
   }
 
-  /**
-   * Closes the toggled navbar when a user clicks on a link
-   */
   handleNavigationClick(){
     this.isOpen = false;
   }
