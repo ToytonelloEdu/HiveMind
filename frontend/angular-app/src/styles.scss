@@ -21,6 +21,10 @@ a.link {
     min-height: 200;
 }
 
+.idea-detail{
+    min-width: 500;
+}
+
 .markdown {
     h1 { 
         display: block;
@@ -87,4 +91,18 @@ a.link {
         list-style-position: inside; 
         margin-left: 15px; 
      }
+}
+
+.pagination{
+    padding: 20px 16px;
+    float: right;
+    font-size: 18;
+}
+
+.pagination .ngx-pagination .current{
+    background: goldenrod;
+    
+    * {
+        background: goldenrod;
+    }
 }
