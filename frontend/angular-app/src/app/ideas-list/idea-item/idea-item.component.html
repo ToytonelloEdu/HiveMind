@@ -1,4 +1,4 @@
-<li class="m-1 flex items-center flex-wrap content-between px-4 py-2">
+<li class="m-1 flex items-center flex-wrap content-between px-4 py-2 max-w-min">
     <div class="bg-white shadow border border-yellow-200 p-4 space-y-3 w-auto rounded-lg ml-auto">
         <div class="flex flex-row">
             <div class="text-lg font-bold flex items-start justify-start w-full">
@@ -20,7 +20,7 @@
             </div> 
         } @else {
             <div>
-                <div class="border border-yellow-50 py-1 px-2  bg-gray-50 rounded-sm min-w-96 min-h-20 markdown" [innerHTML]="markdown"></div>
+                <div class="border border-sky-100 py-1 px-2  bg-gray-50 rounded-sm min-w-96 min-h-20 markdown" [innerHTML]="markdown"></div>
             </div> 
         }
         <div class="flex flex-row">
@@ -38,7 +38,13 @@
                 
             </div>
             <div class="items-end">
-                <button [routerLink]="ideaLink" type="button" class="drop-shadow-md">Comments</button>
+                <button [routerLink]="ideaLink" type="button" class="drop-shadow-md min-w-max">
+                        @if(this.ideaItem.comments == 1) {
+                            {{this.ideaItem.comments}} Comment
+                        } @else {
+                            {{this.ideaItem.comments}} Comments
+                        }
+                </button>
             </div>
         </div>
         
