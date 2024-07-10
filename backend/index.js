@@ -4,6 +4,7 @@ import cors from "cors";
 import { ideaRouter } from "./routes/ideaRouter.js";
 import { authenticationRouter } from "./routes/authRouter.js";
 import { homeRouter } from "./routes/homeRouter.js";
+import { voteRouter } from "./routes/voteRouter.js";
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(ideaRouter);
 app.use(authenticationRouter);
 app.use(homeRouter);
+app.use(voteRouter);
 
 app.use( (err, req, res, next) => {
   console.log(err.stack);
