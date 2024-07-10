@@ -1,5 +1,5 @@
 <section class="m-4 mt-0">
-    <div class="flex flex-col w-full items-center justify-center">
+    <div class="flex flex-col w-full min-h-screen items-center justify-center">
             <div class="w-fit bg-yellow-500 rounded-md">
                 <div class="flex flex-row flex-wrap justify-center content-between w-auto">
                     @if(currentMode === "main"){
@@ -12,19 +12,22 @@
                         <button class="border border-white px-3 min-w-28 py-1" (click)="handleUnpopular()" type="menu">Unpopular</button>
                     } @else if (currentMode === "unpopular"){
                         <button class="border border-white px-3 min-w-28 py-1" (click)="handleMain()" type="menu">Main</button>
-                        <button class="border border-white px-3 min-w-28 py-1" (click)="handlePopular()" type="menu">Popular</button>
+                         <button class="border border-white px-3 min-w-28 py-1" (click)="handlePopular()" type="menu">Popular</button>
                         <button class="border border-white px-3 min-w-28 py-1 bg-yellow-800 text-white rounded-r-md" (click)="handleUnpopular()" type="menu">Unpopular</button>
                     }
                     
                 </div>
             </div>
         <ul class="flex flex-col w-full items-center justify-center">
-            @for (idea of ideas; track idea.id) {
-                <app-idea-item [ideaItem]=idea class="idea-card"></app-idea-item>
+            @for (idea of ideas | paginate : {itemsPerPage:10, currentPage:page, totalItems:totalLength}; track idea.id) {
+                <app-idea-item [ideaItem]=idea (voteClicked)="fetchIdeas()" class="idea-card"></app-idea-item>
             } @empty {
                 <li class="flex items-center flex-wrap content-between w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">No Ideas to show in the HiveMind...</li>
             }
         </ul>
+        <div class="pagination flex justify-center">
+            <pagination-controls (pageChange)="page=$event"></pagination-controls>
+        </div>
     </div>
 </section>
 
