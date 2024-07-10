@@ -1,1 +1,66 @@
-<p>idea-details works!</p>
+<div class="flex flex-col items-center bg-white shadow border border-yellow-200 p-4 space-y-3 w-auto min-h-20 rounded-lg m-auto mt-8 mb-16 mx-24">
+@if(this.render) {
+    <div class="flex flex-row items-center justify-between w-full">
+        <div class="text-lg font-bold flex items-start justify-items-start w-full drop-shadow-sm text-yellow-500">
+                {{this.ideaItem.title}}
+        </div>
+        <div class="text-md font-normal text-gray-700 flex items-end justify-items-end w-auto min-w-fit">
+            @if(ideaItem.UserUsername !== null) {
+                {{this.ideaItem.UserUsername}}
+            } @else {
+                central_mind
+            }
+        </div>
+    </div>
+    @if(! this.ideaItem.isMarkDown){
+        <div style="width: -moz-available;">
+            <textarea readonly class="border border-yellow-50 py-1 px-2  bg-gray-50 rounded-sm w-full min-h-40 h-fit resize-none mx-auto">{{this.ideaItem.description}}</textarea>
+        </div> 
+    } @else {
+        <div style="width: -moz-available;">
+            <div class="border border-sky-100 py-1 px-2  bg-gray-50 rounded-sm min-h-40 h-fit markdown" [innerHTML]="markdown"></div>
+        </div> 
+    }
+    <div class="flex flex-row w-full px-8 pb-1">
+        <div class="flex flex-row items-center justify-between w-full">
+            @if (this.voteState === VoteStateT.none) {
+                <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>
+            } @else if (this.voteState === VoteStateT.upvote) {
+                <button class="bg-yellow-800 text-white rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>
+            } @else if (this.voteState === VoteStateT.downvote) {
+                <button class="bg-yellow-500 rounded-md px-2 py-0.5" (click)="handleUpvote()"> Upvotes: {{this.ideaItem.upvotes}} </button>
+                <button class="bg-yellow-800 text-white rounded-md px-2 py-0.5" (click)="handleDownvote()"> Downvotes: {{this.ideaItem.downvotes}}</button>                    
+            }
+            
+        </div>    
+    </div>
+    <div class="items-center border border-transparent border-t-gray-500 w-full mx-6">
+        <div class="flex flex-col items-center mt-4 w-full">
+            <form [formGroup]="commentForm" (ngSubmit)="handleCommentSubmit()" class="w-full px-4 flex flex-row items-center">
+                <div class="flex flex-row w-full mb-3">
+                    <input type="text" formControlName="comment" id="comment" placeholder="Your comment" class="flex-grow border border-transparent border-b-gray-400 text-gray-900 sm:text-sm rounded-sm w-full p-1.5" required="">
+                    <button type="submit" class="w-fit bg-yellow-500 text-white shadow rounded-lg px-2 py-1 ml-2">Comment</button>
+                </div>
+            </form>
+            <!-- h1 class="mb-3 items-start justify-items-start font-semibold">COMMENTS:</h1 -->
+            <ul class="space-y-2 w-full"> 
+                @for (comment of ideaItem.commentItems; track comment.id) {
+                    <li>
+                        <div class="flex flex-row items-center justify-between bg-yellow-50 shadow px-2 py-1 rounded-md w-full">
+                            <div class="">
+                                <b>{{comment.UserUsername}}:</b> {{comment.comment}} 
+                            </div>
+                            <div class="text-gray-400">
+                                {{comment.createdAt | date: 'H:mm, d/MM/yy'}}
+                            </div>
+                        </div>
+                        
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+</div>
