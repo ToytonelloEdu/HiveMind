@@ -24,6 +24,11 @@ export function createModel(database){
       defaultValue: 0,
       allowNull: false
     },
+    comments: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
     isMarkDown: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
