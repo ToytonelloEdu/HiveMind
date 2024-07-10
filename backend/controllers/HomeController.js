@@ -19,6 +19,7 @@ export class HomeController {
                 'isMarkDown',
                 'upvotes',
                 'downvotes',
+                'comments',
                 'UserUsername',
                 [Sequelize.literal('ABS(upvotes - downvotes)'), 'votesDiff'],
                 [Sequelize.literal('(upvotes+downvotes)'), 'votesSum']
@@ -26,8 +27,7 @@ export class HomeController {
             order: [
                 [Sequelize.literal('votesSum'), 'DESC'],
                 [Sequelize.literal('votesDIff'), 'ASC']
-            ],
-            limit: 10
+            ]
         });
 
         return ideas;
@@ -48,13 +48,14 @@ export class HomeController {
                 'isMarkDown',
                 'upvotes',
                 'downvotes',
+                'comments',
                 'UserUsername',
-                [Sequelize.literal('ABS(upvotes/downvotes)'), 'votesRatio']
+                [Sequelize.literal('ABS((upvotes+1)/(downvotes+1))'), 'votesRatio']
             ],
             order: [
                 [Sequelize.literal('votesRatio'), 'DESC']
             ],
-            limit: 10
+            
         });
 
         return ideas;
@@ -75,13 +76,14 @@ export class HomeController {
                 'isMarkDown',
                 'upvotes',
                 'downvotes',
+                'comments',
                 'UserUsername',
-                [Sequelize.literal('ABS(upvotes/downvotes)'), 'votesRatio']
+                [Sequelize.literal('ABS((upvotes+1)/(downvotes+1))'), 'votesRatio']
             ],
             order: [
                 [Sequelize.literal('votesRatio'), 'ASC']
             ],
-            limit: 10
+            
         });
 
         return ideas;

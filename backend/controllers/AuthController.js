@@ -9,7 +9,7 @@ export class AuthController {
       password: req.body.passw
     });
 
-    let select = User.findOne({
+    let select = await User.findOne({
       where: {
         username: user.username,
         password: user.password

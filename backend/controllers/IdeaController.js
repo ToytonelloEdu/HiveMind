@@ -3,7 +3,6 @@ import { Idea } from "../models/Database.js";
 export class IdeaController {
     
     static async saveIdea(req) {
-      console.log(req.body);
       let idea = new Idea({
         title: req.body.title,
         description: req.body.description,
@@ -29,6 +28,12 @@ export class IdeaController {
       let idea = await Idea.findByPk(id);
       idea.setDataValue('upvotes', updated.upvotes);
       idea.setDataValue('downvotes',updated.downvotes);
+      return idea.save();
+    }
+
+    static async updateComments(id, updated) {
+      let idea = await Idea.findByPk(id);
+      idea.setDataValue('comments', updated.comments);
       return idea.save();
     }
   }
