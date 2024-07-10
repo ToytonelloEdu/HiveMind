@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IdeaItem } from './idea-item.type';
 import { AuthRequest } from './auth-request.type';
+import { VoteItem } from './vote-item.type';
+import { CommentItem } from './comment-item.type';
 
 
 @Injectable({
@@ -33,6 +35,8 @@ export class RestApiService {
     return this.http.get<IdeaItem[]>(url, this.httpOptions);
   }
 
+  
+
   getPopularIdeas() {
     const url = `${this.url}/popular`;
     return this.http.get<IdeaItem[]>(url, this.httpOptions);
@@ -41,6 +45,11 @@ export class RestApiService {
   getUnpopularIdeas() {
     const url = `${this.url}/unpopular`;
     return this.http.get<IdeaItem[]>(url, this.httpOptions);
+  }
+  
+  getIdeaById(id: number) {
+    const url = `${this.url}/ideas/${id}`;
+    return this.http.get<IdeaItem>(url, this.httpOptions);
   }
 
   createIdea(idea: IdeaItem) {
@@ -58,25 +67,24 @@ export class RestApiService {
     return this.http.put<IdeaItem>(url, idea, this.httpOptions);
   }
 
-  addUpvoteIdea(idea: IdeaItem) {
-    const url = `${this.url}/ideas/${idea.id}/upvote`;
-    return this.http.post<IdeaItem>(url, this.httpOptions)
+  getVote(ideaid: number, username: string) {
+    const url = `${this.url}/ideas/${ideaid}/${username}/votes`;
+    return this.http.get<VoteItem>(url, this.httpOptions);
   }
 
-  addDownvoteIdea(idea: IdeaItem) {
-    const url = `${this.url}/ideas/${idea.id}/downvote`;
-    return this.http.post<IdeaItem>(url, this.httpOptions)
+  postVote(vote: VoteItem) {
+    const url = `${this.url}/votes`;
+    return this.http.post<VoteItem>(url, vote, this.httpOptions);
   }
 
-  removeUpvoteIdea(idea: IdeaItem) {
-    const url = `${this.url}/ideas/${idea.id}/upvote`;
-    return this.http.delete<IdeaItem>(url, this.httpOptions)
+  putVote(vote: VoteItem) {
+    const url = `${this.url}/votes`;
+    return this.http.put<VoteItem>(url, vote, this.httpOptions);
   }
 
-  removeDownvoteIdea(idea: IdeaItem) {
-    const url = `${this.url}/ideas/${idea.id}/downvote`;
-    return this.http.delete<IdeaItem>(url, this.httpOptions)
+  postComment(comment: CommentItem) {
+    const url = `${this.url}/ideas/${comment.IdeaId}/comments`;
+    return this.http.post<CommentItem>(url, comment, this.httpOptions);
   }
-
 
 }
