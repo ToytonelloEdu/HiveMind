@@ -45,7 +45,7 @@ export class ConnectPageComponent {
         description: this.ideaForm.value.description as string,
         isMarkDown: this.ideaForm.value.isMarkdown as boolean,
         UserUsername: this.authservice.user() as string,
-        upvotes: 0, downvotes: 0
+        upvotes: 0, downvotes: 0, comments: 0
       }).subscribe({
         next: (idea) => {
           this.toastr.success(`Idea: ${idea.title}`, "Connection complete!");

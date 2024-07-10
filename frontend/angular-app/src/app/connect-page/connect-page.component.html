@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <label for="description" class="inline-block mb-2 mr-4 text-sm font-medium text-gray-900">Description</label>
-                        <textarea type="text" formControlName="description" id="description" class="inline-block bg-gray-100 border border-gray-600 text-gray-900 sm:text-sm rounded-sm w-full p-1.5 pb-10 text-wrap break-words resize-none" required=""></textarea>
+                        <textarea type="text" formControlName="description" id="description" class="inline-block bg-gray-100 border {{ideaForm.value.isMarkdown ? 'border-sky-600' : 'border-gray-600'}} text-gray-900 sm:text-sm rounded-sm w-full p-1.5 pb-10 text-wrap break-words resize-none" required=""></textarea>
                         @if(submitted && ideaForm.controls.description.errors) {
                             @if(ideaForm.controls.description.errors['required']){
                                 <p class="form-error">Description is required.</p>
