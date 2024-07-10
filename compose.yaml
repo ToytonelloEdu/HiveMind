@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - db-data:/backend
+    networks:
+      - back-tier
+  frontend:
+    build: ./frontend/angular-app
+    ports:
+      - "4200:4200"
+    networks:
+      - front-tier
+      - back-tier
+    depends_on:
+      backend:
+        condition: service_started
+        restart: true
+
+volumes:
+  db-data:
+    driver: local
+
+configs:
+  httpd-config:
+    external: true
+
+networks:
+  front-tier: {}
+  back-tier: {}
