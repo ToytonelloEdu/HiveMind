@@ -4,9 +4,20 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - db-data:/backend
+      - type: volume
+        source: db-data
+        target: /backend/db-data
     networks:
       - back-tier
+    develop:
+      watch:
+        - action: rebuild
+          path: ./backend
+          target: Hivemind/backend
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
   frontend:
     build: ./frontend/angular-app
     ports:
@@ -18,10 +29,18 @@ services:
       backend:
         condition: service_started
         restart: true
+    develop:
+      watch:
+        - action: rebuild
+          path: ./frontend/angular-app
+          target: Hivemind/frontend/angular-app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
 
 volumes:
   db-data:
-    driver: local
 
 configs:
   httpd-config:
