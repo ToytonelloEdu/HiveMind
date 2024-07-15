@@ -15,9 +15,10 @@ The website will be completely functional after the docker building process;
 ## Alternative Start-up
 
 In the case that Docker Compose should not work for any reason, here is presented an alternative process to start the Web App:
+1. Execute __step 1 and 2__ of Standard Start-up
 1. Open two terminals, one in the __/backend__ directory, the other in the __/frontend__ directory
 2. For each terminal, 
-    1. Make sure Nodejs version is __20.9.0 or higher__
+    1. Make sure Nodejs version is __20.9.0 or newer__
     2. Execute __npm install__ command
     3. Execute __npm audit fix__ command (if error comes up, skip step)
 3. First, execute __npm start__ in the terminal with __/backend__ working directory
